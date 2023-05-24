@@ -1,5 +1,4 @@
 import React from "react";
-import { saveAs } from "file-saver";
 
 function ControlsHeader({
   handleVideoUpload,
@@ -10,13 +9,16 @@ function ControlsHeader({
   startTimestamp,
   timestamps,
   csvData,
+  inputCSVRef,
+  inputVideoRef,
 }) {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Flam Video Tracker
-        </a>
+        <img src={process.env.PUBLIC_URL + "favicon.ico"} alt="image" width="30" height="24" class="d-inline-block align-text-top"/>
+      {" Flam Video Tracker"}
+    </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">

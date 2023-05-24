@@ -1,22 +1,27 @@
 import React, { useRef, useState } from "react";
-import ReactPlayer from "react-player";
 import { saveAs } from "file-saver";
-import { Table } from "react-bootstrap";
+import VideoPlayer from "./components/VideoPlayer";
+import CSVTable from "./components/CSVTable";
+import ControlsHeader from "./components/ControlsHeader";
 
 function App() {
+  // State variables
   const [startTimestamp, setStartTimestamp] = useState("");
   const [stopTimestamp, setStopTimestamp] = useState("");
   const [timestamps, setTimestamps] = useState([]);
   const [videoFilePath, setVideoFilePath] = useState(null);
   const [csvData, setCSVData] = useState([]);
+
   const playerRef = useRef(null);
   const inputCSVRef = useRef(null);
   const inputVideoRef = useRef(null);
 
+  // Function to handle video upload
   const handleVideoUpload = (event) => {
     setVideoFilePath(URL.createObjectURL(event.target.files[0]));
   };
 
+  // Function to handle CSV upload
   const handleCSVUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -30,13 +35,13 @@ function App() {
         .map((row) => ({ start: row[0].trim(), stop: row[1].trim() }));
 
       setCSVData(parsedCSV);
-
       setTimestamps(parsedCSV);
     };
 
     reader.readAsText(file);
   };
 
+  // Function to format timestamp
   const formatTimestamp = (time) => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time - hours * 3600) / 60);
@@ -52,12 +57,14 @@ function App() {
     return timeString;
   };
 
+  // Function to handle start button click
   const handleStart = () => {
     const currentTime = playerRef.current.getCurrentTime();
     const formattedTimestamp = formatTimestamp(currentTime);
     setStartTimestamp(formattedTimestamp);
   };
 
+  // Function to handle stop button click
   const handleStop = () => {
     const currentTime = playerRef.current.getCurrentTime();
     const formattedTimestamp = formatTimestamp(currentTime);
@@ -70,6 +77,7 @@ function App() {
     setStartTimestamp("");
   };
 
+  // Function to handle download button click
   const handleDownload = () => {
     const csvRows = [null];
     timestamps.forEach((timestamp) => {
@@ -82,154 +90,27 @@ function App() {
     saveAs(blob, "timestamps.csv");
   };
 
-  const [showHead, setShowHead] = useState(false);
-
   return (
     <>
-      {/* Nav Bar */}
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Flam Video Tracker
-          </a>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <button
-                    className="btn btn-outline-success"
-                    type="file"
-                    onClick={() => inputVideoRef.current.click()}
-                  >
-                    Pick Video
-                  </button>
-                  <input
-                    type="file"
-                    style={{ display: "none" }}
-                    onChange={handleVideoUpload}
-                    ref={inputVideoRef}
-                  />
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <button
-                    className="btn btn-outline-success"
-                    type="button"
-                    onClick={() => inputCSVRef.current.click()}
-                  >
-                    Pick CSV
-                  </button>
-                  <input
-                    type="file"
-                    style={{ display: "none" }}
-                    onChange={handleCSVUpload}
-                    ref={inputCSVRef}
-                  />
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                  onClick={handleStart}
-                >
-                  <button
-                    className="btn btn-outline-success"
-                    type="button"
-                    onClick={handleStart}
-                  >
-                    Start
-                  </button>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                  onClick={handleStop}
-                >
-                  <button
-                    className="btn btn-outline-success"
-                    type="button"
-                    disabled={startTimestamp === ""}
-                    onClick={handleStop}
-                  >
-                    Stop
-                  </button>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  {csvData.length > 0 || timestamps.length > 0 ? (
-                    <button
-                      className="btn btn-outline-success"
-                      type="button"
-                      disabled={!timestamps.length}
-                      onClick={handleDownload}
-                    >
-                      Download
-                    </button>
-                  ) : null}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      {/* Player */}
-      <div className="video-player-container">
-        <ReactPlayer
-          ref={playerRef}
-          url={videoFilePath}
-          width="70%"
-          height="10%"
-          controls={true}
-        />
-      </div>
-      {/* csv Table */}
-      <div className="card-table">
-        <Table >
-          {timestamps.length >= 1 && (
-            <thead
-              style={{
-                backgroundColor: "lightgrey",
-                color: "blue",
-                borderStyle: "soild",
-                borderColor: "black",
-              }}
-            >
-              {" "}
-              <tr>
-                <th>S No.</th>
-                <th>Start Time</th>
-                <th>Stop Time</th>
-              </tr>
-            </thead>
-          )}
-
-          <tbody
-            className="table-group-divider"
-            style={{
-              backgroundColor: "white",
-              color: "black",
-              borderStyle: "solid",
-              borderColor: "black",
-            }}
-          >
-            {timestamps.map((timestamp, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{timestamp.start}</td>
-                <td>{timestamp.stop}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
+      <ControlsHeader
+        handleVideoUpload={handleVideoUpload}
+        handleCSVUpload={handleCSVUpload}
+        handleStart={handleStart}
+        handleStop={handleStop}
+        handleDownload={handleDownload}
+        startTimestamp={startTimestamp}
+        timestamps={timestamps}
+        csvData={csvData}
+        inputCSVRef={inputCSVRef}
+        inputVideoRef={inputVideoRef}
+      />
+      <VideoPlayer
+        playerRef={playerRef}
+        videoFilePath={videoFilePath}
+        handleStart={handleStart}
+        startTimestamp={startTimestamp}
+      />
+      <CSVTable timestamps={timestamps} />
     </>
   );
 }
