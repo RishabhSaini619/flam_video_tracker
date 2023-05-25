@@ -5,6 +5,10 @@
 
 .navbar-container {
   background-color: #fafafa;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: #198754;
   padding: 10px;
   width: 100%;
   display: flex;
@@ -15,7 +19,8 @@
 .navbar-brand {
   font-size: 2rem;
   font-weight: bold;
-  color: #212529;
+  font-style: italic;
+  color: #198754;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -27,7 +32,27 @@
   align-items: center;
   gap: 0.5rem;
 }
-
+.button {
+  background-color: #fafafa; /* Green */
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: #198754;
+  color: #198754;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-style: italic;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #198754;
+  font-size: 1.2rem;
+  color: white;
+}
 .file-input {
   display: none;
 }
@@ -51,23 +76,39 @@
   transform: translateX(200px) !important;
 }
 
-.csv-table-container {
-  padding: 20px;
+.csv-table-container{
+  margin: 10px;
   width: 30%;
+  height: 100%;
   float: right;
-  transform: translateX(-200px) !important;
+    
+}
+
+.csv-table-container .table-frame{
+  width: 100%;
+  border-style: solid;
+  border-color: #198754;
+  border-width: 4px;
+  border-radius: 15px;
+  border-collapse: collapse !important;
+  border-bottom-color: #fafafa;
 }
 
 .csv-table-container table th {
-  background-color: lightgrey;
-  color: blue;
+  background-color: #198754;
+  color: #fafafa;
   border-style: solid;
-  border-color: black;
+  border-color: #fafafa;
+  border-width: 2px;
+
+  
 }
 
-.csv-table-container table td {
-  background-color: white;
-  color: black;
+.csv-table-container table  td {
+  background-color: #fafafa;
+  color: #198754;
   border-style: solid;
-  border-color: black;
+  border-color: #198754;
+  border-width: 1px;
+
 }

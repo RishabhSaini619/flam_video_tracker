@@ -79,7 +79,7 @@ function App() {
 
   // Function to handle download button click
   const handleDownload = () => {
-    const csvRows = [null];
+    const csvRows = [];
     timestamps.forEach((timestamp) => {
       csvRows?.push([timestamp.start, timestamp.stop]);
     });

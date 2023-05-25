@@ -20,13 +20,12 @@ function ControlsHeader({
             alt="image"
             width="30"
             height="24"
-            class="d-inline-block align-text-top"
           />
           {" Flam Video Tracker"}
         </div>
         <div className="navbar-links">
           <button
-            className="btn btn-outline-success"
+            className="button "
             type="file"
             onClick={() => inputVideoRef.current.click()}
           >
@@ -42,7 +41,7 @@ function ControlsHeader({
           </button>
 
           <button
-            className="btn btn-outline-success"
+            className="button"
             type="button"
             onClick={() => inputCSVRef.current.click()}
           >
@@ -58,14 +57,13 @@ function ControlsHeader({
           </button>
 
           <button
-            className="btn btn-outline-success"
+            className="button"
             onClick={handleStart}
-            disabled={!timestamps.length}
           >
             Start
           </button>
           <button
-            className="btn btn-outline-success"
+            className="button"
             onClick={handleStop}
             disabled={startTimestamp === ""}
           >
@@ -74,7 +72,7 @@ function ControlsHeader({
 
           {csvData.length > 0 || timestamps.length > 0 ? (
             <button
-              className="btn btn-outline-success"
+              className="button"
               onClick={handleDownload}
               disabled={!timestamps.length}
             >
