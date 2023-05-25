@@ -4,16 +4,12 @@ import ReactPlayer from "react-player";
 function VideoPlayer({
   playerRef,
   videoFilePath,
-  handleStart,
-  startTimestamp,
 }) {
   return (
     <div className="video-player-container">
-      <ReactPlayer
+      <ReactPlayer className="react-player"
         ref={playerRef}
         url={videoFilePath}
-        width="70%"
-        height="10%"
         controls={true}
         
       />

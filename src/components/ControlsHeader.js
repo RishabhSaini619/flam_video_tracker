@@ -13,98 +13,76 @@ function ControlsHeader({
   inputVideoRef,
 }) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-        <img src={process.env.PUBLIC_URL + "favicon.ico"} alt="image" width="30" height="24" class="d-inline-block align-text-top"/>
-      {" Flam Video Tracker"}
-    </a>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                <button
-                  className="btn btn-outline-success"
-                  type="file"
-                  onClick={() => inputVideoRef.current.click()}
-                >
-                  Pick Video
-                </button>
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={handleVideoUpload}
-                  ref={inputVideoRef}
-                />
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                <button
-                  className="btn btn-outline-success"
-                  type="button"
-                  onClick={() => inputCSVRef.current.click()}
-                >
-                  Pick CSV
-                </button>
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={handleCSVUpload}
-                  ref={inputCSVRef}
-                />
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#"
-                onClick={handleStart}
-              >
-                <button
-                  className="btn btn-outline-success"
-                  type="button"
-                  onClick={handleStart}
-                >
-                  Start
-                </button>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#"
-                onClick={handleStop}
-              >
-                <button
-                  className="btn btn-outline-success"
-                  type="button"
-                  disabled={startTimestamp === ""}
-                  onClick={handleStop}
-                >
-                  Stop
-                </button>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                {csvData.length > 0 || timestamps.length > 0 ? (
-                  <button
-                    className="btn btn-outline-success"
-                    type="button"
-                    disabled={!timestamps.length}
-                    onClick={handleDownload}
-                  >
-                    Download
-                  </button>
-                ) : null}
-              </a>
-            </li>
-          </ul>
+    <nav className="navbar-container">
+      
+        <div className="navbar-brand" href="#">
+          <img src={process.env.PUBLIC_URL + "favicon.ico"}
+            alt="image"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          {" Flam Video Tracker"}
         </div>
-      </div>
+        <div className="navbar-links">
+          <button
+            className="btn btn-outline-success"
+            type="file"
+            onClick={() => inputVideoRef.current.click()}
+          >
+            Pick Video
+            <input
+              type="file"
+              ref={inputVideoRef}
+              className="file-input"
+              style={{ display: "none" }}
+              onChange={handleVideoUpload}
+              accept="video/*"
+            />
+          </button>
+
+          <button
+            className="btn btn-outline-success"
+            type="button"
+            onClick={() => inputCSVRef.current.click()}
+          >
+            Pick CSV
+            <input
+              type="file"
+              className="file-input"
+              style={{ display: "none" }}
+              onChange={handleCSVUpload}
+              ref={inputCSVRef}
+              accept=".csv"
+            />
+          </button>
+
+          <button
+            className="btn btn-outline-success"
+            onClick={handleStart}
+            disabled={!timestamps.length}
+          >
+            Start
+          </button>
+          <button
+            className="btn btn-outline-success"
+            onClick={handleStop}
+            disabled={startTimestamp === ""}
+          >
+            Stop
+          </button>
+
+          {csvData.length > 0 || timestamps.length > 0 ? (
+            <button
+              className="btn btn-outline-success"
+              onClick={handleDownload}
+              disabled={!timestamps.length}
+            >
+              Download
+            </button>
+          ) : null}
+        </div>
+      
     </nav>
   );
 }

@@ -3,7 +3,7 @@ import { saveAs } from "file-saver";
 import VideoPlayer from "./components/VideoPlayer";
 import CSVTable from "./components/CSVTable";
 import ControlsHeader from "./components/ControlsHeader";
-
+import './App.css'
 function App() {
   // State variables
   const [startTimestamp, setStartTimestamp] = useState("");
@@ -91,7 +91,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app-container">
       <ControlsHeader
         handleVideoUpload={handleVideoUpload}
         handleCSVUpload={handleCSVUpload}
@@ -104,14 +104,16 @@ function App() {
         inputCSVRef={inputCSVRef}
         inputVideoRef={inputVideoRef}
       />
-      <VideoPlayer
-        playerRef={playerRef}
-        videoFilePath={videoFilePath}
-        handleStart={handleStart}
-        startTimestamp={startTimestamp}
-      />
-      <CSVTable timestamps={timestamps} />
-    </>
+      <div className="body-container">
+        <VideoPlayer
+          playerRef={playerRef}
+          videoFilePath={videoFilePath}
+          handleStart={handleStart}
+          startTimestamp={startTimestamp}
+        />
+        <CSVTable timestamps={timestamps} />
+      </div>
+    </div>
   );
 }
 

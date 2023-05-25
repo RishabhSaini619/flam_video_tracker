@@ -1,19 +1,11 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 
 function CSVTable({ timestamps }) {
   return (
-    <div className="card-table">
-      <Table>
+    <div className="csv-table-container">
+      <table className="table">
         {timestamps.length >= 1 && (
-          <thead
-            style={{
-              backgroundColor: "lightgrey",
-              color: "blue",
-              borderStyle: "soild",
-              borderColor: "black",
-            }}
-          >
+          <thead>
             <tr>
               <th>S No.</th>
               <th>Start Time</th>
@@ -22,15 +14,7 @@ function CSVTable({ timestamps }) {
           </thead>
         )}
 
-        <tbody
-          className="table-group-divider"
-          style={{
-            backgroundColor: "white",
-            color: "black",
-            borderStyle: "solid",
-            borderColor: "black",
-          }}
-        >
+        <tbody>
           {timestamps.map((timestamp, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
@@ -39,7 +23,7 @@ function CSVTable({ timestamps }) {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 }
