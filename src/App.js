@@ -60,22 +60,26 @@ function App() {
   // Function to handle start button click
   const handleStart = () => {
     const currentTime = playerRef.current.getCurrentTime();
-    const formattedTimestamp = formatTimestamp(currentTime);
-    setStartTimestamp(formattedTimestamp);
+    const formattedStartTimestamp = formatTimestamp(currentTime);
+
+    setStartTimestamp(formattedStartTimestamp);
   };
 
-  // Function to handle stop button click
   const handleStop = () => {
     const currentTime = playerRef.current.getCurrentTime();
-    const formattedTimestamp = formatTimestamp(currentTime);
+    const formattedStopTimestamp = formatTimestamp(currentTime);
 
-    setStopTimestamp(formattedTimestamp);
-    setTimestamps([
-      ...timestamps,
-      { start: startTimestamp, stop: formattedTimestamp },
-    ]);
+    setStopTimestamp(formattedStopTimestamp);
+
+    const newTimestamp = {
+      start: startTimestamp,
+      stop: formattedStopTimestamp,
+    };
+
+    setTimestamps((prevTimestamps) => [...prevTimestamps, newTimestamp]);
     setStartTimestamp("");
   };
+  
 
   // Function to handle download button click
   const handleDownload = () => {
@@ -111,7 +115,7 @@ function App() {
           handleStart={handleStart}
           startTimestamp={startTimestamp}
         />
-        <CSVTable timestamps={timestamps} />
+        <CSVTable timestamps={timestamps} startTimestamp={startTimestamp} inputVideoRef={inputVideoRef}/>
       </div>
     </div>
   );
