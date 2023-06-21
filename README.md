@@ -80,8 +80,8 @@ npm start
 
 ### Troubleshooting:
 
-- If the video does not play or you encounter any issues with the video player, ensure that the selected video file is in a compatible format (e.g., MP4, WebM) and that your web browser supports video playback.
-- If the CSV file does not load or the timestamps are not displayed correctly, make sure that the CSV file is formatted correctly. The CSV file should have two columns: "Start Time" and "Stop Time", with each row representing a timestamp in HH:MM:SS format.
+- If the video does not play or you encounter any issues with the video player, please make sure that the selected video file is in a compatible format (e.g., MP4, WebM) and that your web browser supports video playback.
+- If the CSV file does not load or the timestamps are not displayed correctly, make sure that the CSV file is formatted correctly. The CSV file should have two columns: "Start Time" and "Stop Time", with each row representing a timestamp in HH:MM: SS format.
 
 ### Limitations:
 
@@ -90,14 +90,14 @@ npm start
 
 ### Feedback and Contributions:
 
-- If you have any feedback, suggestions, or would like to contribute to the Video Tracker application, please feel free to open an issue or submit a pull request on the GitHub repository.
+- If you have any feedback, or suggestions, or would like to contribute to the Video Tracker application, please feel free to open an issue or submit a pull request on the GitHub repository.
 
-- ```
+```
 https://github.com/RishabhSaini619/flam_video_tracker/
 ```
 
 ### License:
 
-- The Video Tracker application is under the flying flamingos india pvt ltd License. See the LICENSE file for more details.
+- The Video Tracker application is under the Flying Flamingos India pvt ltd License. See the LICENSE file for more details.
 
-- That's it! The README provides an overview of the application, instructions on how to install and run it, and details on how to use its features. It also includes troubleshooting information, limitations, and information on providing feedback and contributing.
+- That's it! The README provides an overview of the application, instructions on installing and running it, and details on how to use its features. It also includes troubleshooting, limitations, and information on providing feedback and contributing.
