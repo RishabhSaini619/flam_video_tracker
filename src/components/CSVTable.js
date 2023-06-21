@@ -2,6 +2,8 @@ import React from "react";
 
 function CSVTable({ timestamps , startTimestamp , inputVideoRef}) {
   console.log(timestamps);
+  console.log(startTimestamp,"CSVTable-props");
+
   return (
     <div className="csv-table-container">
       {inputVideoRef?.current && (

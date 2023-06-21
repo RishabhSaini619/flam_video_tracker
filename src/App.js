@@ -63,6 +63,7 @@ function App() {
     const formattedStartTimestamp = formatTimestamp(currentTime);
 
     setStartTimestamp(formattedStartTimestamp);
+    console.log(startTimestamp,"app.js-handleStart");
   };
 
   const handleStop = () => {
@@ -70,6 +71,10 @@ function App() {
     const formattedStopTimestamp = formatTimestamp(currentTime);
 
     setStopTimestamp(formattedStopTimestamp);
+
+    console.log(startTimestamp,"app.js-handleStop");
+    console.log(formattedStopTimestamp,"app.js-handleStop");
+
 
     const newTimestamp = {
       start: startTimestamp,
@@ -113,7 +118,8 @@ function App() {
           playerRef={playerRef}
           videoFilePath={videoFilePath}
           handleStart={handleStart}
-          startTimestamp={startTimestamp}
+          handleStop={handleStop}
+          // startTimestamp={startTimestamp}
         />
         <CSVTable timestamps={timestamps} startTimestamp={startTimestamp} inputVideoRef={inputVideoRef}/>
       </div>

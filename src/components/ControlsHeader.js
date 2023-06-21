@@ -12,16 +12,18 @@ function ControlsHeader({
   inputCSVRef,
   inputVideoRef,
 }) {
+
+  console.log(startTimestamp,"controlsheader-props");
   return (
     <nav className="navbar-container">
       <div className="navbar-brand" href="#">
         <img
-          src={process.env.PUBLIC_URL + "favicon.ico"}
+          src={process.env.PUBLIC_URL + "flam.svg"}
           alt="image"
-          width="30"
-          height="24"
+          width="100"
+          height="50"
         />
-        {" Flam Video Tracker"}
+        <h3 className="title" style={{marginTop:20}}>Video Tracker</h3>
       </div>
       <div className="navbar-links">
         {/* Download btn */}
