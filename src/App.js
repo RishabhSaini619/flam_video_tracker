@@ -3,7 +3,7 @@ import { saveAs } from "file-saver";
 import VideoPlayer from "./components/VideoPlayer";
 import CSVTable from "./components/CSVTable";
 import ControlsHeader from "./components/ControlsHeader";
-import './App.css'
+import "./App.css";
 function App() {
   // State variables
   const [startTimestamp, setStartTimestamp] = useState("");
@@ -63,7 +63,7 @@ function App() {
     const formattedStartTimestamp = formatTimestamp(currentTime);
 
     setStartTimestamp(formattedStartTimestamp);
-    console.log(startTimestamp,"app.js-handleStart");
+    console.log(startTimestamp, "app.js-handleStart");
   };
 
   const handleStop = () => {
@@ -72,9 +72,8 @@ function App() {
 
     setStopTimestamp(formattedStopTimestamp);
 
-    console.log(startTimestamp,"app.js-handleStop");
-    console.log(formattedStopTimestamp,"app.js-handleStop");
-
+    console.log(startTimestamp, "app.js-handleStop");
+    console.log(formattedStopTimestamp, "app.js-handleStop");
 
     const newTimestamp = {
       start: startTimestamp,
@@ -84,7 +83,6 @@ function App() {
     setTimestamps((prevTimestamps) => [...prevTimestamps, newTimestamp]);
     setStartTimestamp("");
   };
-  
 
   // Function to handle download button click
   const handleDownload = () => {
@@ -117,11 +115,17 @@ function App() {
         <VideoPlayer
           playerRef={playerRef}
           videoFilePath={videoFilePath}
-          handleStart={handleStart}
-          handleStop={handleStop}
-          // startTimestamp={startTimestamp}
+          // handleStart={handleStart}
+          // handleStop={handleStop}
+          // handleVideoUpload={handleVideoUpload}
+          // handleCSVUpload={handleCSVUpload}
+          // handleDownload={handleDownload}
         />
-        <CSVTable timestamps={timestamps} startTimestamp={startTimestamp} inputVideoRef={inputVideoRef}/>
+        <CSVTable
+          timestamps={timestamps}
+          startTimestamp={startTimestamp}
+          inputVideoRef={inputVideoRef}
+        />
       </div>
     </div>
   );

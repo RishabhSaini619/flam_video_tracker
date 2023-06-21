@@ -1,38 +1,53 @@
 import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
 
-function VideoPlayer({ playerRef, videoFilePath, handleStart, handleStop }) {
+function VideoPlayer({
+  playerRef,
+  videoFilePath,
+  // handleStart,
+  // handleStop,
+  // handleVideoUpload,
+  // handleCSVUpload,
+  // handleDownload,
+}) {
   useEffect(() => {
     const handleKeyDown = (event) => {
+      event.preventDefault();
+
       switch (event.key) {
         case " ":
-          event.preventDefault();
           handleTogglePlay();
           break;
         case "ArrowLeft":
-        case "<":
-          event.preventDefault();
+        case ",":
           handleRewind();
           break;
         case "ArrowRight":
-        case ">":
-          event.preventDefault();
+        case ".":
           handleForward();
           break;
-        case "z":
-          event.preventDefault();
-          handleStart();
-          break;
-        case "x":
-          event.preventDefault();
-          handleStop();
-          break;
+        // case "z":
+        //   handleStart();
+        //   break;
+        // case "x":
+        //   handleStop();
+        //   break;
+        // case "c":
+        //   event.preventDefault();
+        //   handleCSVUpload();
+        //   break;
+        // case "v":
+        //   event.preventDefault();
+        //   handleVideoUpload();
+        //   break;
+        // case "d":
+        //   event.preventDefault();
+        //   handleDownload();
+        //   break;
         default:
           break;
       }
     };
-    
-
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
