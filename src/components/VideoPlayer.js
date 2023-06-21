@@ -10,12 +10,12 @@ function VideoPlayer({ playerRef, videoFilePath, handleStart, handleStop }) {
           handleTogglePlay();
           break;
         case "ArrowLeft":
-        case ",":
+        case "<":
           event.preventDefault();
           handleRewind();
           break;
         case "ArrowRight":
-        case ".":
+        case ">":
           event.preventDefault();
           handleForward();
           break;
