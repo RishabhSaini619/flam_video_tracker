@@ -31,6 +31,7 @@ function VideoPlayer({ playerRef, videoFilePath, handleStart, handleStop }) {
           break;
       }
     };
+    
 
     window.addEventListener("keydown", handleKeyDown);
 
@@ -43,10 +44,8 @@ function VideoPlayer({ playerRef, videoFilePath, handleStart, handleStop }) {
     if (playerRef.current) {
       const isPaused = playerRef.current.getInternalPlayer().paused;
       if (isPaused) {
-        handleStart();
         playerRef.current.getInternalPlayer().play();
       } else {
-        handleStop();
         playerRef.current.getInternalPlayer().pause();
       }
     }
