@@ -1,42 +1,44 @@
 import React, { useRef } from "react";
 import ReactPlayer from "react-player";
 
-function VideoPlayer({
-  playerRef,
-  videoFilePath,
-  handleStart,
-  handleStop,
-}) {
-  const containerRef = useRef(null);
+function VideoPlayer({ playerRef, videoFilePath, handleStart, handleStop }) {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      switch (event.key) {
+        case " ":
+          event.preventDefault();
+          handleTogglePlay();
+          break;
+        case "ArrowLeft":
+        case "<":
+          event.preventDefault();
+          handleRewind();
+          break;
+        case "ArrowRight":
+        case ">":
+          event.preventDefault();
+          handleForward();
+          break;
+        case "z":
+          event.preventDefault();
+          handleStart();
+          break;
+        case "x":
+          event.preventDefault();
+          handleStop();
+          break;
+        default:
+          break;
+      }
+    };
+    
 
-  const handleKeyDown = (event) => {
-    switch (event.key) {
-      case " ":
-        event.preventDefault();
-        handleTogglePlay();
-        break;
-      case "ArrowLeft":
-      case "<":
-        event.preventDefault();
-        handleRewind();
-        break;
-      case "ArrowRight":
-      case ">":
-        event.preventDefault();
-        handleForward();
-        break;
-      case "z":
-        event.preventDefault();
-        handleStart();
-        break;
-      case "x":
-        event.preventDefault();
-        handleStop();
-        break;
-      default:
-        break;
-    }
-  };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const handleTogglePlay = () => {
     if (playerRef.current) {
